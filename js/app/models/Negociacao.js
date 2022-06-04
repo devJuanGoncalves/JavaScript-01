@@ -5,12 +5,12 @@ class Negociacao {
     #valor;
 
     constructor(data, quantidade, valor) {
-        this.#data = data;
+        this.#data = new Date(data.getTime());
         this.#quantidade = quantidade;
         this.#valor = valor;
     }
 
-    getVolume() {
+    get volume() {
         return this.quantidade * this.valor;
     }
 
