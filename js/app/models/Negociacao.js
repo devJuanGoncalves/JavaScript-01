@@ -33,4 +33,8 @@ Função fora de uma classe = Função
 
 Desde o ES2019 já é possível utilizar atributos privados no javascript.
 
+-----------
+
+O padrão MVC permite que alterações de layout na view não acarretem alterações no modelo.
+
 */
