@@ -2,6 +2,7 @@ class NegociacaoController {
   #data;
   #quantidade;
   #valor;
+  #listaNegociacoes;
 
   constructor() {
     let $ = document.querySelector.bind(document);
@@ -9,18 +10,33 @@ class NegociacaoController {
     this.#data = $('#data');
     this.#quantidade = $('#quantidade');
     this.#valor = $('#valor');
+    this.#listaNegociacoes = new ListaNegociacoes();
   }
 
   adicionaNegociacao(event) {
     event.preventDefault();
-    
-    let negociacao = new Negociacao(
+
+    this.#listaNegociacoes.adiciona(this.#novaNegociacao());
+
+    console.log(this.#listaNegociacoes.negociacoes);
+
+    this.#limpaFormulario();
+  }
+
+  #novaNegociacao() {
+    return new Negociacao(
       DateHelper.textoParaData(this.#data.value),
       this.#quantidade.value,
       this.#valor.value
     );
+  }
 
-    console.log(negociacao);
+  #limpaFormulario() {
+    this.#data.value = '';
+    this.#quantidade.value = 1;
+    this.#valor.value = 0.0;
+
+    this.#data.focus();
   }
 }
 
