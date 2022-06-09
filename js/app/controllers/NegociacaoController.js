@@ -4,6 +4,8 @@ class NegociacaoController {
   #valor;
   #listaNegociacoes;
   #negociacoesView;
+  #mensagem;
+  #mensagemView;
 
   constructor() {
     let $ = document.querySelector.bind(document);
@@ -12,15 +14,19 @@ class NegociacaoController {
     this.#quantidade = $('#quantidade');
     this.#valor = $('#valor');
     this.#listaNegociacoes = new ListaNegociacoes();
+    
     this.#negociacoesView = new NegociacoesView($('#negociacoesView'));
-
     this.#negociacoesView.update(this.#listaNegociacoes);
+    this.#mensagem = new Mensagem();
+    this.#mensagemView = new MensagemView($('#mensagemView'));
   }
 
   adicionaNegociacao(event) {
     event.preventDefault();
 
     this.#listaNegociacoes.adiciona(this.#novaNegociacao());
+    this.#mensagem.texto = 'Negociação cadastrada com sucesso';
+    this.#mensagemView.update(this.#mensagem);
     this.#negociacoesView.update(this.#listaNegociacoes);   
     this.#limpaFormulario();
     console.log(this.#listaNegociacoes.negociacoes);
