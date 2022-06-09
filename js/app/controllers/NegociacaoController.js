@@ -14,12 +14,10 @@ class NegociacaoController {
   adicionaNegociacao(event) {
     event.preventDefault();
 
+    let helper = new DateHelper(); 
+
     let negociacao = new Negociacao(
-      new Date(
-        ...this.#data.value
-          .split('-')
-          .map((item, indice) => item - (indice % 2))
-      ),
+      helper.textoParaData(this.#data.value),
       this.#quantidade.value,
       this.#valor.value
     );
